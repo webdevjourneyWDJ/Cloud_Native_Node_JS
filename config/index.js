@@ -15,17 +15,32 @@ module.exports = {
     version,
     serviceTimeout: 30,
     log: () => getLogger(name, version, 'debug'),
+    zipkin: {
+      host: 'localhost',
+      port: 9411,
+      serviceName:'dogcat'
+    }
   },
   production: {
     name,
     version,
     serviceTimeout: 30,
     log: () => getLogger(name, version, 'info'),
+    zipkin: {
+      host: process.env.ZIPKIN_COLLECTOR_SERVICE_HOST,
+      port: process.env.ZIPKIN_COLLECTOR_SERVICE_PORT,
+      serviceName:'wdj_nodeserver'
+    }
   },
   test: {
     name,
     version,
     serviceTimeout: 30,
     log: () => getLogger(name, version, 'fatal'),
+    zipkin: {
+      host: 'localhost',
+      port: 9411,
+      serviceName:'dogcat'
+    }
   },
 };

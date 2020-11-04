@@ -1,8 +1,10 @@
 #!/usr/bin/env node
+const config = require('../config')[process.env.NODE_ENV || 'development'];
+
+const appzip = require('appmetrics-zipkin')(config.zipkin);
 require('appmetrics-prometheus').attach();
 const http = require('http');
 
-const config = require('../config')[process.env.NODE_ENV || 'development'];
 
 const log = config.log();
 const app = require('../app')(config);
